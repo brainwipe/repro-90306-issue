@@ -1,0 +1,21 @@
+
+name: Build dotnet
+
+on:
+  push:
+    branches: [ "main" ]
+  
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: windows-latest
+
+    steps:
+        - uses: actions/checkout@v4
+        - name: Setup .NET
+          uses: actions/setup-dotnet@v4
+          with:
+              dotnet-version: 9.0.x
+        - name: Restore dependencies
+          run: dotnet restore
